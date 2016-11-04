@@ -55,18 +55,22 @@ public class Handler {
         // services.AddIdentity<User, IdentityRole>()
         //     .AddEntityFrameworkStores<DB>()
         //     .AddDefaultTokenProviders();
-
-        services.AddMvc();
-        services.AddCors();
-
         // instead of
         //      services.AddScoped<IRepository<Card>, Repo<Card>>();
         // do
-        Repo<Card>.Register(services, "Cards");
-        Repo<CardList>.Register(services, "CardLists", 
-            d => d.Include(l => l.Cards));
-        Repo<Board>.Register(services, "Boards", 
-            d => d.Include(b => b.Lists).ThenInclude(l => l.Cards));
+         services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials() );
+        });
+        services.AddMvc();
+
+  //      List<IGram>.Register(services, "Gram");
+  //          d => d.Include(l => l.Likes) && // ask Matt if this is correct.
+  //          d => d.Include(c => c.Comments)); //ask Matt about this!
 
         // Inject an implementation of ISwaggerProvider with defaulted settings applied
         services.AddSwaggerGen();
@@ -106,7 +110,7 @@ public class Handler {
             app.UseStatusCodePages();
         }
 
-        Seed.Initialize(db, env.IsDevelopment());
+       // Seed.Initialize(db, env.IsDevelopment());
 
         // app.UseApplicationInsightsRequestTelemetry();
         // app.UseApplicationInsightsExceptionTelemetry();

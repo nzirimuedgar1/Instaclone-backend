@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 [Route("/")]
 public class HomeController : Controller
 {
-    private IRepository<Card> cards;
-    private IRepository<CardList> lists;
-    private IRepository<Board> boards;
-    public HomeController(IRepository<Card> cards, IRepository<CardList> lists, IRepository<Board> boards){
-        this.cards = cards;
-        this.lists = lists;
-        this.boards = boards;
+    private IRepository<Gram> grams;
+    private IRepository<Like> likes;
+    private IRepository<Comment> comments;
+    public HomeController(IRepository<Gram> grams, IRepository<Like> likes, IRepository<Comment> comments){
+        this.grams = grams;
+        this.likes = likes;
+        this.comments = comments;
     }
 
     [HttpGet("/{username?}")]

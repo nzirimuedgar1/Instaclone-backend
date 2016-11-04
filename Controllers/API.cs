@@ -1,26 +1,36 @@
-using Microsoft.AspNetCore.Mvc;
+/*using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using System;
 using Microsoft.EntityFrameworkCore;
 
-[Route("/api/card")]
-public class CardController : CRUDController<Card> {
-    public CardController(IRepository<Card> r) : base(r){}
 
-    [HttpGet("search")]
-    public IActionResult Search([FromQuery]string term, int listId = -1){
-        return Ok(r.Read(dbset => dbset.Where(card => 
-            card.Title.IndexOf(term) != -1)
-            || card.Content.IndexOf(term) != -1
-        ));
-    }
-}
+/* [Route("/api/gram")]
+public class GramAPIController {
+    public GramAPIController(List<Gram> grams) {
 
-[Route("/api/cardlist")]
-public class CardListController : CRUDController<CardList> {
-    public CardListController(IRepository<CardList> r) : base(r){}
-}
+ //   [HttpGet("search")] //fix this
+//    public IActionResult Search([FromQuery]string term, int Id = -1){
+ //       return View(r.Read(dbset => dbset.Where(g =>
+ //           g.Gram.IndexOf(term) != -1)
+ //       ));
+ //   }
+ //   [HttpGet("all/{id}")]
+ /*   public IActionResult GetAll(int Id = -1){
+        if(Id != -1){
+            return View(r.Read(dbset =>
+            dbset  
+                .Where(g => g.Id == Id)
+                .Include(g => g.Comments)
+                .ThenInclude(g => g.Likes)
+                )); 
+        } */
 
-[Route("/api/board")]
-public class BoardController : CRUDController<Board> {
-    public BoardController(IRepository<Board> r) : base(r){}
-}
+
+
+        
+
+
+
+
+

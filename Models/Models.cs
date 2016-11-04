@@ -7,38 +7,31 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-public class Card : HasId
-{
+
+
+public class Like : HasId {
     [Required]
     public int Id { get; set; }
     [Required]
-    public string Title { get; set; }
+    public DateTime createdAt { get; set; }
     [Required]
-    [StringLength(250, MinimumLength = 10)]
-    public string Content { get; set; }
+    public int GramId { get; set; }
+    public Like() {
+        Id = new Random().Next();
+    }
 }
 
-public class CardList : HasId {
+public class Comment : HasId {
     [Required]
     public int Id { get; set; }
+    [Required] 
+    [StringLength(250)]
+    public string Message { get; set; }
     [Required]
-    public string Summary { get; set; }
+    public DateTime createdAt { get; set; }
     [Required]
-    public List<Card> Cards { get; set; }
-}
-
-public class Board : HasId {
-    [Required]
-    public int Id { get; set; }
-    [Required]
-    public string Title { get; set; }
-    [Required]
-    public List<CardList> Lists { get; set; }
-}
-
-// colocate DbSet declarations with classes
-public partial class DB : DbContext {
-    public DbSet<Card> Cards { get; set; }
-    public DbSet<CardList> CardLists { get; set; }
-    public DbSet<Board> Boards { get; set; }
+    public int GramId { get; set; }
+    public Comment() {
+        Id = new Random().Next();
+    }
 }

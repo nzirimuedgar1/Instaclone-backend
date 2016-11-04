@@ -8,4 +8,7 @@ public partial class DB : DbContext {
     {
         base.OnModelCreating(builder);
     }
+    public DbSet<Gram> Grams { get; set; }
+    public DbSet<Like> Likes { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 }
